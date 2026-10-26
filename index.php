@@ -1,25 +1,32 @@
 <?php
 get_header();
-if (have_posts()) :
-    while (have_posts()) : the_post();
-        ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <div class="page-header">
-                <div class="container">
-                    <h1><?php the_title(); ?></h1>
+?>
+
+<main class="single-shell">
+    <div class="container">
+        <?php if (have_posts()) : ?>
+            <?php while (have_posts()) : the_post(); ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('noah-entry'); ?>>
+                    <header class="entry-header">
+                        <h1><?php the_title(); ?></h1>
+                    </header>
+
+                    <div class="entry-content">
+                        <?php the_content(); ?>
+                    </div>
+                </article>
+            <?php endwhile; ?>
+        <?php else : ?>
+            <article class="noah-entry">
+                <header class="entry-header">
+                    <h1><?php echo esc_html__('Nothing found', 'noah-theme'); ?></h1>
+                </header>
+                <div class="entry-content">
+                    <p><?php echo esc_html__('No posts were found.', 'noah-theme'); ?></p>
                 </div>
-            </div>
-            <div class="container entry-content">
-                <?php the_content(); ?>
-            </div>
-        </article>
-        <?php
-    endwhile;
-else :
-    ?>
-    <div class="container entry-content">
-        <h2><?php esc_html_e('Nothing found', 'noah-theme'); ?></h2>
+            </article>
+        <?php endif; ?>
     </div>
-<?php
-endif;
-get_footer();
+</main>
+
+<?php get_footer(); ?>

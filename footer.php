@@ -1,40 +1,50 @@
-<?php
-?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php wp_head(); ?>
-</head>
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-<header class="site-header" role="banner">
-    <div class="container">
-        <div class="brand">
-            <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
-                <?php if (has_custom_logo()) : ?>
-                    <?php the_custom_logo(); ?>
-                <?php else : ?>
-                    <span class="brand-mark">N</span>
-                    <span><?php echo esc_html(get_theme_mod('noah_brand_name', 'NOAH')); ?></span>
-                <?php endif; ?>
-            </a>
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-column">
+            <div class="footer-brand">
+                <span class="brand-mark">N</span>
+                <span><?php bloginfo('name'); ?></span>
+            </div>
+            <p><?php echo esc_html__('Luxury fine jewelry and bespoke timepieces curated for meaningful living.', 'noah-theme'); ?></p>
         </div>
 
-        <nav class="site-nav" aria-label="Primary navigation">
+        <div class="footer-column">
+            <h4><?php echo esc_html__('Explore', 'noah-theme'); ?></h4>
             <?php
             wp_nav_menu(array(
-                'theme_location' => 'primary',
+                'theme_location' => 'footer',
                 'container' => false,
+                'menu_class' => '',
                 'fallback_cb' => false,
             ));
             ?>
-        </nav>
+        </div>
 
-        <div class="header-tools" aria-label="Header tools">
-            <a href="#" class="icon-button">Wishlist</a>
-            <a href="#" class="icon-button">Cart (0)</a>
+        <div class="footer-column">
+            <h4><?php echo esc_html__('Customer Care', 'noah-theme'); ?></h4>
+            <ul>
+                <li><a href="<?php echo esc_url(home_url('/contact')); ?>"><?php echo esc_html__('Contact', 'noah-theme'); ?></a></li>
+                <li><a href="<?php echo esc_url(home_url('/shipping-returns')); ?>"><?php echo esc_html__('Shipping & Returns', 'noah-theme'); ?></a></li>
+                <li><a href="<?php echo esc_url(home_url('/faq')); ?>"><?php echo esc_html__('FAQ', 'noah-theme'); ?></a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4><?php echo esc_html__('Connect', 'noah-theme'); ?></h4>
+            <ul>
+                <li><a href="<?php echo esc_url(get_theme_mod('noah_social_instagram', '#')); ?>"><?php echo esc_html__('Instagram', 'noah-theme'); ?></a></li>
+                <li><a href="<?php echo esc_url(get_theme_mod('noah_social_pinterest', '#')); ?>"><?php echo esc_html__('Pinterest', 'noah-theme'); ?></a></li>
+                <li><a href="mailto:<?php echo esc_attr(get_theme_mod('noah_contact_email', 'hello@noahjewelry.com')); ?>"><?php echo esc_html(get_theme_mod('noah_contact_email', 'hello@noahjewelry.com')); ?></a></li>
+            </ul>
         </div>
     </div>
-</header>
-<main id="content" class="site-content">
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p><?php echo esc_html__('©', 'noah-theme') . ' ' . esc_html(date_i18n('Y')) . ' ' . esc_html(get_bloginfo('name')); ?></p>
+        </div>
+    </div>
+</footer>
+<?php wp_footer(); ?>
+</body>
+</html>
