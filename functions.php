@@ -38,6 +38,473 @@ function noah_theme_get_setting($key, $default = '') {
     return $value !== '' ? $value : $default;
 }
 
+function noah_theme_screen_page_titles() {
+    return array(
+        'Home',
+        'About',
+        'Contact',
+        'Shop',
+        'Product Details',
+        'Cart',
+        'Checkout',
+        'Account',
+        'Wishlist',
+        'Login',
+        'Sign Up',
+        'Forgot Password',
+        'Order Confirmation',
+        'Sell',
+        'Buy',
+        'Precious Metals',
+        'Diamond Store',
+        'Jewellery Store',
+        'Price on Request',
+        'Reserve Product',
+        'Make Offer',
+        'Collection',
+        'Gift Guide',
+        'Blog',
+        'FAQ',
+        'Shipping & Returns',
+        'Terms & Conditions',
+        'Privacy Policy',
+        'Search Results',
+        'Custom Design',
+    );
+}
+
+function noah_theme_demo_page_content($page_title = 'Home') {
+    $slug = sanitize_title($page_title);
+    $title = trim($page_title) !== '' ? $page_title : 'Home';
+
+    $cards = array(
+        array('label' => 'Client rating', 'value' => '4.9/5'),
+        array('label' => 'Jewels sold', 'value' => '12k+'),
+        array('label' => 'Fast dispatch', 'value' => '48h'),
+        array('label' => 'Certified', 'value' => '100%'),
+    );
+
+    $card_markup = '';
+    foreach ($cards as $card) {
+        $card_markup .= '<div class="noah-stat"><strong>' . esc_html($card['value']) . '</strong><span>' . esc_html($card['label']) . '</span></div>';
+    }
+
+    $common_top = '
+    <section class="noah-screen">
+        <div class="container noah-screen-wrap">
+            <div class="screen-top">
+                <span class="eyebrow">Luxury design</span>
+                <h1>' . esc_html($title) . '</h1>
+            </div>
+            <div class="noah-stats">' . $card_markup . '</div>
+        </div>
+    </section>';
+
+    switch ($slug) {
+        case 'about':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top">
+                        <span class="eyebrow">Our story</span>
+                        <h1>Crafted with quiet confidence.</h1>
+                    </div>
+                    <div class="noah-story-grid">
+                        <div class="noah-story-copy">
+                            <p>Noah was created to bring together heirloom-worthy craftsmanship, editorial styling, and modern luxury for life’s most meaningful milestones.</p>
+                            <p>Each piece is designed with responsible sourcing, sculpted silhouettes, and meticulous finishing so it feels personal from the first glance to the final unboxing.</p>
+                            <ul class="noah-list">
+                                <li>Ethically sourced stones and premium metals.</li>
+                                <li>Made-to-order consultation and custom design support.</li>
+                                <li>Concierge service built around gifting and special occasions.</li>
+                            </ul>
+                        </div>
+                        <div class="noah-media-card noah-media-one"></div>
+                    </div>
+                    <div class="noah-feature-grid">
+                        <article class="noah-feature-card"><strong>20+</strong><span>Years of craftsmanship</span></article>
+                        <article class="noah-feature-card"><strong>35K</strong><span>Clients served</span></article>
+                        <article class="noah-feature-card"><strong>4.9/5</strong><span>Average review rating</span></article>
+                    </div>
+                </div>
+            </section>';
+
+        case 'contact':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Visit us</span>
+                        <h1>Speak with a jewelry concierge.</h1>
+                    </div>
+                    <div class="noah-contact-grid">
+                        <div class="noah-contact-panel">
+                            <h3>Contact details</h3>
+                            <ul class="noah-list noah-list-compact">
+                                <li>hello@noahjewelry.com</li>
+                                <li>+966 55 000 0000</li>
+                                <li>Al Khobar, Saudi Arabia</li>
+                            </ul>
+                            <div class="noah-mini-cta">
+                                <a href="#" class="primary-button">Book a consultation</a>
+                            </div>
+                        </div>
+                        <form class="noah-form">
+                            <div class="field-row"><input type="text" placeholder="Full name" /></div>
+                            <div class="field-row"><input type="email" placeholder="Email address" /></div>
+                            <div class="field-row"><input type="text" placeholder="Phone number" /></div>
+                            <div class="field-row"><textarea rows="5" placeholder="Tell us about your enquiry"></textarea></div>
+                            <button type="submit" class="primary-button">Send inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </section>';
+
+        case 'shop':
+        case 'diamond-store':
+        case 'jewellery-store':
+        case 'collection':
+        case 'precious-metals':
+        case 'gift-guide':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top" style="display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap;">
+                        <div>
+                            <span class="eyebrow">Collections</span>
+                            <h1>' . esc_html($title) . '</h1>
+                        </div>
+                        <div class="noah-chip-row">
+                            <span class="noah-chip">Rings</span>
+                            <span class="noah-chip">Necklaces</span>
+                            <span class="noah-chip">Bracelets</span>
+                        </div>
+                    </div>
+                    <div class="noah-shop-grid">
+                        <article class="noah-product-card">
+                            <div class="product-visual product-1"></div>
+                            <div class="product-copy">
+                                <span class="tag">Diamond</span>
+                                <h3>Celeste Halo Ring</h3>
+                                <div class="price-row"><strong>$1,240</strong><span>★★★★★</span></div>
+                            </div>
+                        </article>
+                        <article class="noah-product-card">
+                            <div class="product-visual product-2"></div>
+                            <div class="product-copy">
+                                <span class="tag">Gold</span>
+                                <h3>Aurora Necklace</h3>
+                                <div class="price-row"><strong>$980</strong><span>★★★★★</span></div>
+                            </div>
+                        </article>
+                        <article class="noah-product-card">
+                            <div class="product-visual product-3"></div>
+                            <div class="product-copy">
+                                <span class="tag">Pearl</span>
+                                <h3>Luna Bracelet</h3>
+                                <div class="price-row"><strong>$860</strong><span>★★★★★</span></div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>';
+
+        case 'product-details':
+        case 'reserve-product':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Product detail</span>
+                        <h1>Celeste Halo Ring</h1>
+                    </div>
+                    <div class="noah-product-detail">
+                        <div class="noah-gallery-panel"></div>
+                        <div class="noah-product-summary">
+                            <span class="tag">Signature</span>
+                            <h2>Luxury diamond ring for everyday brilliance.</h2>
+                            <p>Crafted in 18K gold with a halo setting designed to frame the central stone with exceptional light and depth.</p>
+                            <div class="noah-metrics">
+                                <div><strong>$1,240</strong><span>Price</span></div>
+                                <div><strong>18K</strong><span>Metal</span></div>
+                                <div><strong>4.9</strong><span>Rating</span></div>
+                            </div>
+                            <div class="noah-cta-row">
+                                <a class="primary-button" href="#">Add to cart</a>
+                                <a class="secondary-button" href="#">Reserve now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>';
+
+        case 'cart':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Shopping bag</span>
+                        <h1>Your cart</h1>
+                    </div>
+                    <div class="noah-cart-layout">
+                        <div class="noah-cart-items">
+                            <div class="noah-cart-item">
+                                <div class="mini-thumb thumb-one"></div>
+                                <div>
+                                    <h3>Celeste Halo Ring</h3>
+                                    <p>18K gold • 1.2 carat</p>
+                                </div>
+                                <strong>$1,240</strong>
+                            </div>
+                            <div class="noah-cart-item">
+                                <div class="mini-thumb thumb-two"></div>
+                                <div>
+                                    <h3>Aurora Necklace</h3>
+                                    <p>Gold vermeil • 14mm</p>
+                                </div>
+                                <strong>$980</strong>
+                            </div>
+                        </div>
+                        <aside class="noah-summary-box">
+                            <h3>Order summary</h3>
+                            <div class="summary-row"><span>Subtotal</span><strong>$2,220</strong></div>
+                            <div class="summary-row"><span>Shipping</span><strong>Free</strong></div>
+                            <div class="summary-row total"><span>Total</span><strong>$2,220</strong></div>
+                            <a href="#" class="primary-button full">Proceed to checkout</a>
+                        </aside>
+                    </div>
+                </div>
+            </section>';
+
+        case 'checkout':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Secure checkout</span>
+                        <h1>Complete your order</h1>
+                    </div>
+                    <div class="noah-checkout-layout">
+                        <form class="noah-form checkout-form">
+                            <div class="field-row"><input type="text" placeholder="First name" /></div>
+                            <div class="field-row"><input type="text" placeholder="Last name" /></div>
+                            <div class="field-row"><input type="text" placeholder="Address" /></div>
+                            <div class="field-row"><input type="text" placeholder="City" /></div>
+                            <div class="field-row"><input type="text" placeholder="Card number" /></div>
+                            <button type="submit" class="primary-button">Pay securely</button>
+                        </form>
+                        <aside class="noah-summary-box">
+                            <h3>Order summary</h3>
+                            <div class="summary-row"><span>Celeste Halo Ring</span><strong>$1,240</strong></div>
+                            <div class="summary-row"><span>Aurora Necklace</span><strong>$980</strong></div>
+                            <div class="summary-row total"><span>Total</span><strong>$2,220</strong></div>
+                        </aside>
+                    </div>
+                </div>
+            </section>';
+
+        case 'account':
+        case 'wishlist':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">My account</span>
+                        <h1>Welcome back, Amina.</h1>
+                    </div>
+                    <div class="noah-account-grid">
+                        <div class="noah-profile-panel">
+                            <h3>Profile overview</h3>
+                            <ul class="noah-list noah-list-compact">
+                                <li>Orders placed: 6</li>
+                                <li>Wishlist items: 4</li>
+                                <li>Member since 2023</li>
+                            </ul>
+                        </div>
+                        <div class="noah-account-panel">
+                            <h3>Recent orders</h3>
+                            <div class="order-row"><span>#N-2408</span><strong>Delivered</strong></div>
+                            <div class="order-row"><span>#N-2382</span><strong>Processing</strong></div>
+                            <div class="order-row"><span>#N-2364</span><strong>Shipped</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </section>';
+
+        case 'login':
+        case 'sign-up':
+        case 'forgot-password':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap narrow-form-wrap">
+                    <div class="screen-top narrow center">
+                        <span class="eyebrow">Member access</span>
+                        <h1>' . esc_html($title) . '</h1>
+                    </div>
+                    <form class="noah-form auth-form">
+                        <div class="field-row"><input type="email" placeholder="Email address" /></div>
+                        <div class="field-row"><input type="password" placeholder="Password" /></div>
+                        <button type="submit" class="primary-button full">Continue</button>
+                    </form>
+                </div>
+            </section>';
+
+        case 'order-confirmation':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap narrow-form-wrap">
+                    <div class="screen-top narrow center">
+                        <span class="eyebrow">Order placed</span>
+                        <h1>Thank you for your purchase.</h1>
+                    </div>
+                    <div class="noah-confirm-box">
+                        <p>Order #NOAH-2408 has been confirmed and a receipt has been sent to your email.</p>
+                        <div class="noah-metrics compact-metrics">
+                            <div><strong>2 days</strong><span>Dispatch</span></div>
+                            <div><strong>Free</strong><span>Shipping</span></div>
+                            <div><strong>4.9</strong><span>Care rating</span></div>
+                        </div>
+                        <a class="primary-button" href="#">Track order</a>
+                    </div>
+                </div>
+            </section>';
+
+        case 'sell':
+        case 'buy':
+        case 'price-on-request':
+        case 'make-offer':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Bespoke service</span>
+                        <h1>' . esc_html($title) . '</h1>
+                    </div>
+                    <div class="noah-two-col-card">
+                        <div>
+                            <h3>Request a quote</h3>
+                            <p>Tell us about your piece, your desired timeline, and the level of support you’re looking for from the Noah concierge team.</p>
+                        </div>
+                        <form class="noah-form">
+                            <div class="field-row"><input type="text" placeholder="Item type" /></div>
+                            <div class="field-row"><input type="text" placeholder="Budget or target price" /></div>
+                            <div class="field-row"><textarea rows="5" placeholder="Additional details"></textarea></div>
+                            <button type="submit" class="primary-button">Submit request</button>
+                        </form>
+                    </div>
+                </div>
+            </section>';
+
+        case 'blog':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Journal</span>
+                        <h1>Style notes and design stories.</h1>
+                    </div>
+                    <div class="noah-news-grid">
+                        <article class="noah-news-card news-one"><div class="news-copy"><span>Gifting</span><h3>How to choose a memorable heirloom gift.</h3></div></article>
+                        <article class="noah-news-card news-two"><div class="news-copy"><span>Craft</span><h3>Inside the finishing workshop.</h3></div></article>
+                        <article class="noah-news-card news-three"><div class="news-copy"><span>Style</span><h3>Three layers of modern luxury styling.</h3></div></article>
+                    </div>
+                </div>
+            </section>';
+
+        case 'faq':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Support</span>
+                        <h1>Frequently asked questions.</h1>
+                    </div>
+                    <div class="noah-faq-list">
+                        <div class="noah-faq-item"><strong>How long does shipping take?</strong><p>Most orders are dispatched in 48 hours and delivered within 5–7 business days.</p></div>
+                        <div class="noah-faq-item"><strong>Do you offer custom pieces?</strong><p>Yes, our design team creates bespoke commissions for rings, bracelets, and signature gifting sets.</p></div>
+                        <div class="noah-faq-item"><strong>Can I reserve a product?</strong><p>Absolutely. Select the reserve option on the product page and our team will confirm availability.</p></div>
+                    </div>
+                </div>
+            </section>';
+
+        case 'shipping-returns':
+        case 'terms-conditions':
+        case 'privacy-policy':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Policy</span>
+                        <h1>' . esc_html($title) . '</h1>
+                    </div>
+                    <div class="noah-policy-box">
+                        <p>We protect your purchase experience with transparent communication, secure fulfillment, and customer-first support.</p>
+                        <p>Orders are handled with care, insured packaging, and clear return guidance for peace of mind.</p>
+                        <p>For full terms, contact support and our team will walk you through any policy questions in detail.</p>
+                    </div>
+                </div>
+            </section>';
+
+        case 'search-results':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Search</span>
+                        <h1>Search results for “engagement rings”</h1>
+                    </div>
+                    <div class="noah-shop-grid compact-search-grid">
+                        <article class="noah-product-card">
+                            <div class="product-visual product-1"></div>
+                            <div class="product-copy"><span class="tag">Rings</span><h3>Solstice Ring</h3><div class="price-row"><strong>$1,320</strong><span>★★★★★</span></div></div>
+                        </article>
+                        <article class="noah-product-card">
+                            <div class="product-visual product-2"></div>
+                            <div class="product-copy"><span class="tag">Rings</span><h3>Marina Halo</h3><div class="price-row"><strong>$1,160</strong><span>★★★★★</span></div></div>
+                        </article>
+                        <article class="noah-product-card">
+                            <div class="product-visual product-3"></div>
+                            <div class="product-copy"><span class="tag">Rings</span><h3>Velvet Band</h3><div class="price-row"><strong>$940</strong><span>★★★★★</span></div></div>
+                        </article>
+                    </div>
+                </div>
+            </section>';
+
+        case 'custom-design':
+            return '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="screen-top narrow">
+                        <span class="eyebrow">Custom design</span>
+                        <h1>Design your next heirloom.</h1>
+                    </div>
+                    <div class="noah-two-col-card">
+                        <div>
+                            <h3>Tell us the story</h3>
+                            <p>Share the occasion, your inspiration, metal preference, and the mood you want the final piece to carry.</p>
+                        </div>
+                        <form class="noah-form">
+                            <div class="field-row"><input type="text" placeholder="Design concept" /></div>
+                            <div class="field-row"><input type="text" placeholder="Budget range" /></div>
+                            <div class="field-row"><textarea rows="5" placeholder="Share details about your custom request"></textarea></div>
+                            <button type="submit" class="primary-button">Submit concept</button>
+                        </form>
+                    </div>
+                </div>
+            </section>';
+
+        default:
+            return $common_top . '
+            <section class="noah-screen">
+                <div class="container noah-screen-wrap">
+                    <div class="noah-simple-panel">
+                        <p>This storefront section is ready to be expanded with custom content for the ' . esc_html($title) . ' screen.</p>
+                    </div>
+                </div>
+            </section>';
+    }
+}
+
 function noah_theme_body_classes($classes) {
     $classes[] = 'noah-theme';
     if (function_exists('elementor_theme_do_location')) {
@@ -210,7 +677,7 @@ function noah_theme_run_demo_import() {
         if (!$page) {
             $page_id = wp_insert_post(array(
                 'post_title' => $title,
-                'post_content' => '<p>' . esc_html($content) . '</p>',
+                'post_content' => noah_theme_demo_page_content($title),
                 'post_status' => 'publish',
                 'post_type' => 'page',
             ));
@@ -227,6 +694,15 @@ function noah_theme_run_demo_import() {
                     'menu-item-type' => 'post_type',
                     'menu-item-status' => 'publish',
                 ));
+            }
+        } else {
+            wp_update_post(array(
+                'ID' => $page->ID,
+                'post_content' => noah_theme_demo_page_content($title),
+            ));
+
+            if ($title === 'Home') {
+                $home_page_id = $page->ID;
             }
         }
     }
@@ -304,3 +780,4 @@ add_filter('wp_nav_menu_args', function ($args) {
     }
     return $args;
 });
+
