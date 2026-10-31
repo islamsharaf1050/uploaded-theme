@@ -1,28 +1,43 @@
 <?php
 /*
-Template Name: Noah Shop Template
+Template Name: Noah Product Template
 */
 get_header();
 ?>
-<div class="container entry-content">
-    <div class="page-header">
-        <h1><?php the_title(); ?></h1>
-    </div>
+<main class="noah-demo-page noah-product-page">
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+        <?php if (trim(get_the_content()) !== '') : ?>
+            <div class="noah-demo-content"><?php the_content(); ?></div>
+        <?php else : ?>
+            <section class="section">
+                <div class="container">
+                    <div class="page-header" style="margin-bottom:30px;">
+                        <span class="eyebrow"><?php echo esc_html__('Product detail', 'noah-theme'); ?></span>
+                        <h1><?php echo esc_html__('Celeste Halo Ring', 'noah-theme'); ?></h1>
+                    </div>
 
-    <div class="product-grid">
-        <?php for ($i = 1; $i <= 8; $i++) : ?>
-            <article class="product-card">
-                <img src="https://images.unsplash.com/photo-1601821765780-3bf2d2f962b5?auto=format&fit=crop&w=900&q=80" alt="Product <?php echo esc_attr($i); ?>" />
-                <div class="product-meta">
-                    <span class="tag">Signature</span>
-                    <h3>Product <?php echo esc_html($i); ?></h3>
-                    <div class="price-row">
-                        <strong>$1,250</strong>
-                        <span class="rating">★★★★★</span>
+                    <div class="product-detail-layout">
+                        <div class="product-gallery-large" style="background-image:url('https://images.unsplash.com/photo-1601821765780-3bf2d2f962b5?auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="product-summary-panel">
+                            <span class="tag"><?php echo esc_html__('Diamond', 'noah-theme'); ?></span>
+                            <h2><?php echo esc_html__('A radiant statement crafted for unforgettable moments.', 'noah-theme'); ?></h2>
+                            <p><?php echo esc_html__('Crafted in luminous 18K gold with a halo setting designed to enhance brilliance, depth, and elegance for gifting, milestones, and modern heirlooms.', 'noah-theme'); ?></p>
+
+                            <div class="metrics-grid">
+                                <div><strong>$1,240</strong><span><?php echo esc_html__('Price', 'noah-theme'); ?></span></div>
+                                <div><strong>18K</strong><span><?php echo esc_html__('Gold', 'noah-theme'); ?></span></div>
+                                <div><strong>4.9</strong><span><?php echo esc_html__('Rating', 'noah-theme'); ?></span></div>
+                            </div>
+
+                            <div class="product-actions">
+                                <a href="<?php echo esc_url(home_url('/cart')); ?>" class="primary-button"><?php echo esc_html__('Add to cart', 'noah-theme'); ?></a>
+                                <a href="<?php echo esc_url(home_url('/checkout')); ?>" class="secondary-button"><?php echo esc_html__('Reserve now', 'noah-theme'); ?></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </article>
-        <?php endfor; ?>
-    </div>
-</div>
+            </section>
+        <?php endif; ?>
+    <?php endwhile; endif; ?>
+</main>
 <?php get_footer(); ?>

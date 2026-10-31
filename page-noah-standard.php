@@ -1,30 +1,37 @@
 <?php
 /*
-Template Name: Noah Product Template
+Template Name: Noah Standard Template
 */
 get_header();
 ?>
-<div class="container entry-content">
+<main class="noah-demo-page noah-standard-page">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <div class="page-header">
-                <h1><?php the_title(); ?></h1>
-            </div>
-            <div class="story-block">
-                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=80" alt="Product preview" />
-                <div class="story-copy">
-                    <h2>Celeste Halo Ring</h2>
-                    <p>Discover a premium jewellery piece crafted with precision, elegance, and luxury detailing perfected for exceptional gifting and statement styling.</p>
-                    <div class="metrics">
-                        <div><strong>$1,240</strong><span>Price</span></div>
-                        <div><strong>18K</strong><span>Gold</span></div>
-                        <div><strong>4.9</strong><span>Rating</span></div>
+        <?php if (trim(get_the_content()) !== '') : ?>
+            <div class="noah-demo-content"><?php the_content(); ?></div>
+        <?php else : ?>
+            <section class="section">
+                <div class="container">
+                    <div class="page-header centered-header">
+                        <span class="eyebrow"><?php echo esc_html__('Noah Studio', 'noah-theme'); ?></span>
+                        <h1><?php the_title(); ?></h1>
                     </div>
-                    <p><a href="#" class="btn btn-primary">Add to cart</a></p>
+
+                    <div class="standard-layout">
+                        <div class="standard-image" style="background-image:url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="standard-copy">
+                            <h2><?php echo esc_html__('Woven with intention, crafted for meaningful moments.', 'noah-theme'); ?></h2>
+                            <p><?php echo esc_html__('Every Noah piece is created to feel personal from the first glimpse to the final unboxing — with refined artistry, premium materials, and a luxury experience designed around the story you want to carry forward.', 'noah-theme'); ?></p>
+                            <ul class="noah-list">
+                                <li><?php echo esc_html__('Bespoke consultations and private design support.', 'noah-theme'); ?></li>
+                                <li><?php echo esc_html__('Premium craftsmanship with responsible sourcing.', 'noah-theme'); ?></li>
+                                <li><?php echo esc_html__('Luxury packaging and concierge guidance for gifting.', 'noah-theme'); ?></li>
+                            </ul>
+                            <a href="<?php echo esc_url(home_url('/contact')); ?>" class="primary-button"><?php echo esc_html__('Book a consultation', 'noah-theme'); ?></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <?php the_content(); ?>
-        </article>
+            </section>
+        <?php endif; ?>
     <?php endwhile; endif; ?>
-</div>
+</main>
 <?php get_footer(); ?>
