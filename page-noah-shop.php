@@ -11,16 +11,17 @@ get_header();
         <?php else : ?>
             <section class="section">
                 <div class="container">
-                    <div class="section-head">
-                        <span class="eyebrow"><?php echo esc_html__('Shop all', 'noah-theme'); ?></span>
-                        <h2><?php echo esc_html__('Luxury jewellery for every story.', 'noah-theme'); ?></h2>
-                    </div>
-
-                    <div class="noah-filter-row">
-                        <span class="noah-chip"><?php echo esc_html__('Rings', 'noah-theme'); ?></span>
-                        <span class="noah-chip"><?php echo esc_html__('Necklaces', 'noah-theme'); ?></span>
-                        <span class="noah-chip"><?php echo esc_html__('Bracelets', 'noah-theme'); ?></span>
-                        <span class="noah-chip"><?php echo esc_html__('Earrings', 'noah-theme'); ?></span>
+                    <div class="section-head section-head-split">
+                        <div>
+                            <span class="eyebrow"><?php echo esc_html__('Shop all', 'noah-theme'); ?></span>
+                            <h2><?php echo esc_html__('Luxury jewellery for every story.', 'noah-theme'); ?></h2>
+                        </div>
+                        <div class="inline-pill-group">
+                            <span class="noah-chip"><?php echo esc_html__('Rings', 'noah-theme'); ?></span>
+                            <span class="noah-chip"><?php echo esc_html__('Necklaces', 'noah-theme'); ?></span>
+                            <span class="noah-chip"><?php echo esc_html__('Bracelets', 'noah-theme'); ?></span>
+                            <span class="noah-chip"><?php echo esc_html__('Earrings', 'noah-theme'); ?></span>
+                        </div>
                     </div>
 
                     <div class="product-grid">
